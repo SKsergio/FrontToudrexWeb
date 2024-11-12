@@ -1,12 +1,9 @@
 <template>
-    <div>
-        <h1>Homeeeee</h1>
-    </div>
+    <h1>Hola Master</h1>
 </template>
 
-<script setup>
+<script setup lang="ts">
 
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

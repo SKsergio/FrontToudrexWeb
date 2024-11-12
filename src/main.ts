@@ -14,6 +14,6 @@ import '../src/css/variables.css'
 
 createApp(App)
   .use(router)
-  .use(store)
   .use(vuetify)
+  .use(store)
   .mount('#app')

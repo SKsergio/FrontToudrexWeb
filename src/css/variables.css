@@ -1,39 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Comfortaa:wght@300..700&family=Jersey+15&family=Shadows+Into+Light&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Neuton:ital,wght@0,200;0,300;0,400;0,700;0,800;1,400&family=Qwitcher+Grypen:wght@700&display=swap');
 :root{
+    /* colores originales */ 
+    --color-primary:#174A42;
+    --color-secundary:#66FCF1;
+    --color-third: #212833;
+    --color-cero: #1FAFDA;
+    --color-green:#C4C6C8;
+    --color-fifth:#45A29E;
+    --black-varian: #0B0C10;
+    --color-white:#eaeef7;
 
-    /*Color de letras*/
-    --font-color-primary:#101B1F 14%;
+    /* variantes */
+    --color-primary-variante1: #2da591;
+    --color-backgound: rgb(190, 210, 252);
+    --color-header-back: rgb(120, 103, 136) ;
+    
 
-   /* colores originales */ 
-   --color-primary:#174A42;
-   --color-secundary:#66FCF1;
-   --color-third: #212833;
-   --color-cero: #1FAFDA;
-   --color-green:#C4C6C8;
-   --color-fifth:#45A29E;
-   --black-varian: #0B0C10;
-   --color-white:#eaeef7;
-
-   /* variantes */
-   --color-primary-variante1: #2da591;
-   --color-backgound: rgb(190, 210, 252);
-   --color-header-back: rgb(120, 103, 136) ;
-   
-
-   /* mezclas */
-   --color-fourth: linear-gradient(315deg, #4dc668 14%, #295c86 45%, #8e1e83 82%);
-   --background-publications: linear-gradient(315deg, rgba(10, 54, 65, 0.95) 18%, rgba(18, 85, 97, 0.97) 44%, #1d374d 74%);
-   --profile-content:linear-gradient(315deg, #174A42 18%, #228171 38%, #2e6158 62%, #0a4038 83%);
-   --profile-content_publication:linear-gradient(167deg, #215374 11%, #244c7a 33%, #1a5672 60%);
-   
+    /* mezclas */
+    --color-fourth: linear-gradient(315deg, #4dc668 14%, #295c86 45%, #8e1e83 82%);
+    --background-publications: linear-gradient(315deg, rgba(10, 54, 65, 0.95) 18%, rgba(18, 85, 97, 0.97) 44%, #1d374d 74%);
+    --profile-content:linear-gradient(315deg, #174A42 18%, #228171 38%, #2e6158 62%, #0a4038 83%);
+    --profile-content_publication:linear-gradient(167deg, #215374 11%, #244c7a 33%, #1a5672 60%);
     
     /* letras */
     --font-decoration: "Shadows Into Light", cursive;
-    --font-info: "Neuton", serif;
-    --font-decoration2:"Kalam", cursive;
     --font--body: "Cabin", sans-serif;
     --font--title: "Comfortaa", sans-serif;
-    --font-decoration3: "Qwitcher Grypen", cursive;
     --font-pth:"Jersey 15", sans-serif;
 }

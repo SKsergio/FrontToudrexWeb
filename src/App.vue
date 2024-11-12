@@ -11,9 +11,7 @@
   </main>
 
   <footer>
-    <h1>Jii</h1>
   </footer>
-
 </template>
 
 <script setup lang="ts">

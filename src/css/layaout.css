@@ -3,7 +3,7 @@
 #app{
     display: grid;
     gap: 40px;
-    background: var(--color-primary);
+    background: var(--color-third);
     grid-template-areas: "header header header"
     "main main main"
     "footer footer footer";
@@ -11,7 +11,6 @@
 #app header{
     grid-area: header;
     position: relative;
-    background: var(--second-mixer);
 }
 #app main{
     display: grid;
