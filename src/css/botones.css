@@ -1,0 +1,26 @@
+@import url(../css/normalice.css);
+.btn_logins{
+    width: 75%;
+    height: 40px;
+    cursor: pointer;
+    transition: all .6s ease;
+    background: var(--color-mein);
+    border: none;
+    border-radius: 12px;
+    color: var(--color-white);
+    font-size: 17px;
+    font-weight: 600;
+    box-shadow: rgba(0, 0, 0, 0.5) 16px 14px 20px;
+    margin-bottom: 35px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn_logins:hover{
+    box-shadow: rgba(21, 29, 73, 0.795) 16px 14px 20px;
+}
+
+.btn_logins:hover{
+    transform:  scale(1.1);
+}

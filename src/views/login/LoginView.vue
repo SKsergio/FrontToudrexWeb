@@ -41,8 +41,10 @@
                                 <a id="forgotPassword" href="#">Forgotten password?</a>
                             </div>
 
-                            <a class="create" id="createAccountBtn" href="#">Create new account</a>
-
+                            <router-link :to="{name:'anccount1'}" class="create" id="createAccountBtn">
+                                Create new account
+                            </router-link>
+                            
 
                         </div>
 
@@ -59,7 +61,7 @@
 import '@/css/login.css'
 
 //importando componentes de vue
-import { ref, Ref } from 'vue';
+import { ref } from 'vue';
 
 let user_gmail = ref('');
 let password = ref('');
