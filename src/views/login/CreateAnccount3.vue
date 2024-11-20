@@ -5,61 +5,198 @@
                 <h1>Crea una nueva Cuenta</h1>
             </v-card-title>
             <v-card-text>
-                <form id="Form_Password">
-                <h1 class="How_Name">Datos para inicio de sesión</h1>
-                <div class="form-group">
-                    <label for="usuario">Crea un nombre de Usuario</label>
-                    <p>Elige un nombre de usuario, será con el que tus demás amigos en la red te van a identificar.</p>
-                    <div class="input-group">
-                        <input type="text" id="usuario" name="usuario" placeholder=" ">
-                        <label for="usuario">Usuario</label>
-                        <span id="error-usuario"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="correo">Ingresa un correo electrónico</label>
-                    <p>Ingresa un correo electrónico que será con el cual tendrás vinculada tu cuenta de WalWeb</p>
+                <form class="FormGeneral" @submit.prevent="SaveData">
+                    <h1 class="How_Name text-center">Datos para inicio de sesión</h1>
 
-                    <div class="input-group">
-                        <input type="email" id="correo" name="correo" placeholder=" ">
-                        <label for="correo">Correo</label>
-                        <span id="error-correo"></span>
+                    <div class="form-group">
+                        <label for="usuario">Crea un nombre de Usuario</label>
+
+                        <div class="input-group">
+                            <v-text-field label="Nombre de Usuario" color="blue" type="text" :rules="rules" counter
+                                clearable maxlength="20" prepend-inner-icon="mdi-account" class="input_ct"
+                                v-model="user"></v-text-field>
+                            <h3 ref="error_usuario"></h3>
+                        </div>
                     </div>
 
-                </div>
-                <div class="form-group">
-                    <label for="password">Crea una contraseña</label>
-                    <p>Debe ser mayor a 8 caracteres, al momento de darle siguiente, ten en cuenta que con estos datos
-                        tendrás que ingresar al momento de iniciar sesión en WalpWeb</p>
-
-                    <div class="input-group password-group">
-                        <input type="password" id="password" name="password" placeholder=" ">
-                        <label for="password">Contraseña</label>
-                        <span class="toggle-password" onclick="togglePassword('password')">👁️</span>
-                        <span class="error-message" id="error-password"></span>
+                    <div class="form-group">
+                        <label for="correo">Ingresa un correo electrónico</label>
+                        <div class="input-grou">
+                            <v-text-field hide-details="auto" class="input_ct" color="blue" label="correo electrónico"
+                                placeholder="johndoe@gmail.com" type="email" v-model="correo"></v-text-field>
+                            <h3 ref="error_gmail"></h3>
+                        </div>
                     </div>
 
-                </div>
-                <div class="form-group">
-                    <label for="confirm-password">Confirma tu contraseña</label>
-                    <p>La contraseña debe ser igual a la descrita en el ítem anterior</p>
-                    <div class="input-group password-group">
-                        <input type="password" id="confirm-password" name="confirm-password" placeholder=" ">
-                        <label for="confirm-password">Confirmar contraseña</label>
-                        <span class="toggle-password" onclick="togglePassword('confirm-password')">👁️</span>
-                        <span id="error-confirm-password"></span>
+                    <div class="form-group">
+                        <label for="password">Crea una contraseña</label>
+                        <p>Debe ser mayor a 8 caracteres, al momento de darle siguiente, ten en cuenta que con estos
+                            datos
+                            tendrás que ingresar al momento de iniciar sesión en Toudrex</p>
+
+                        <div class="input-group">
+                            <section class="password-group">
+                                <v-text-field hint="Enter your password to access this website" label="Password"
+                                    type="password" class="input_ct" v-model="password">
+                                </v-text-field>
+                                <span class="toggle-password">👁️</span>
+                            </section>
+
+                            <h3 class="error_message" ref="error_password"></h3>
+                        </div>
                     </div>
-                </div>
-                <div class="button-group">
-                    <button type="submit" id="loginBtn" class="FormUser_BTN">Siguiente</button>
-                </div>
-            </form>
+
+                    <div class="form-group">
+                        <label for="confirm-password">Confirma tu contraseña</label>
+                        <p>La contraseña debe ser igual a la descrita en el ítem anterior</p>
+                        <section class="password-group">
+                            <v-text-field hint="Enter your password to access this website" label="Password"
+                                type="password" class="input_ct" v-model="password_validate">
+                            </v-text-field>
+                            <span class="toggle-password">👁️</span>
+                        </section>
+
+                        <h3 class="error_message" ref="error_passwordValidate"></h3>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn_logins">Siguiente</button>
+                    </div>
+                </form>
             </v-card-text>
         </v-card>
     </v-container>
 </template>
 
 <script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+//ruta
+let router = useRouter()
+
+//datos a almacenar en sesion storage
+let user = ref('');
+let correo = ref('');
+let password = ref('');
+let password_validate = ref('');
+
+//funcion para guardar los datos en el sesionStorage
+const SaveData = () =>{
+    if (!validarCampos(user.value, correo.value, password.value, password_validate.value)) {
+        return;
+    }
+
+    sessionStorage.setItem('usuario', user.value);
+    sessionStorage.setItem('telefono', correo.value);
+    sessionStorage.setItem('contrasenia', password_validate.value);
+
+    // redireccionando al siguiente formulario
+    router.push({name: 'anccount4'})
+}
+
+//validaciones
+let error_usuario = ref(null)
+let error_password = ref(null)
+let error_passwordValidate = ref(null)
+let error_gmail = ref(null)
+
+
+const validarCampos =(user, mail, password, passwordVal)=>{
+    if (user == '' || user == null) {
+        error_usuario.value.textContent = 'El campo de usuario es requerido.'
+        error_usuario.value.style.color = 'red';
+        return false
+    }else{
+        error_usuario.value.textContent = ''
+    }
+    if (mail == '' || mail == null) {
+        error_gmail.value.textContent = 'El campo de correo es requerido.'
+        error_gmail.value.style.color = 'red';
+
+        //aca falta validar el regex del email
+        return false
+    }else{
+        error_gmail.value.textContent = ''
+    }
+    if (password == '' || password == null) {
+        error_password.value.textContent = 'El campo de contraseña es requerido.'
+        error_password.value.style.color = 'red';
+        return false
+    }else{
+        error_password.value.textContent = ''
+    }
+    if (password != passwordVal) {
+        error_passwordValidate.value.textContent = 'Las contraseñas deben coincidir'
+        error_passwordValidate.value.style.color = 'red';
+        return false
+    }else{
+        error_passwordValidate.value.textContent = ''
+    }
+    return true
+}
+
+
+
 </script>
 
-<style scoped></style>
+<style scoped>
+@import url(../../css/botones.css);
+
+.FormGeneral {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    margin: 0 auto;
+    gap: 11px;
+}
+
+.password-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+}
+
+.input_ct {
+    width: 320px;
+}
+
+.cardi {
+    color: var(--color-white);
+    width: 60%;
+    margin: 0 auto;
+    border-radius: 30px;
+}
+
+.btn_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+</style>
