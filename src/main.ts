@@ -11,6 +11,7 @@ loadFonts()
 import '../src/css/layaout.css'
 import '../src/css/normalice.css'
 import '../src/css/variables.css'
+import '../src/css/Menu.css'
 
 createApp(App)
   .use(router)

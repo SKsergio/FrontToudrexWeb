@@ -92,24 +92,20 @@ const validarCampos =(genero, numero)=>{
     width: 70%;
     margin: 0 auto;
 }
-
 .input_ct {
     width: 320px;
 }
-
 .cardi {
     color: var(--color-white);
     width: 60%;
     margin: 0 auto;
     border-radius: 30px;
 }
-
 .btn_container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 .input-group {
     display: flex;
     flex-direction: column;

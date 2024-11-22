@@ -6,25 +6,26 @@
                 <h1>Crea una nueva Cuenta</h1>
             </v-card-title>
             <v-card-text>
-                <form id="Form_photo" action="<?php echo URL_BASE;?>ajax/UsuarioAjax.php" method="POST"
-                    enctype="multipart/form-data" class="Form_photo">
+                <form id="Form_photo" enctype="multipart/form-data" class="FormGeneral">
                     <!-- notaaaaaaa utiliza el autocomplete=off que es para que los dformularios no se completen automaticamante -->
-                    <h1 class="How_Name">Selecciona una foto de Perfil</h1>
                     <div class="form-group">
+                        <h1 class="How_Name">Selecciona una foto de Perfil</h1>
+
                         <div class="input-group">
-                            <input type="file" name="foto_perfil" id="foto" class="doc_form" accept="image/jpeg">
+                            <inputFileComponent></inputFileComponent>
                         </div>
                         <span class="error-foto_perfil" id="error-foto_perfil"></span>
                     </div>
                     <div class="form-group">
-                        <label for="telefono">Selecciona una foto de Portada</label>
+                        <h1 class="How_Name">Selecciona una foto de Portada</h1>
                         <div class="input-group">
-                            <input type="file" name="foto_portada" id="foto" class="doc_form" accept="image/jpeg">
+                            <inputFileComponent></inputFileComponent>
                         </div>
                         <span class="error-foto_portada" id="error-foto_portada"></span>
                     </div>
                     <div class="button-group">
-                        <button type="submit" id="loginBtn" class="FormUser_BTN">Siguiente</button>
+                        <button type="submit" class="btn_logins">Siguiente</button>
+
                     </div>
                 </form>
             </v-card-text>
@@ -33,6 +34,66 @@
 </template>
 
 <script setup>
+import inputFileComponent from '@/components/inputFileComponent.vue';
 </script>
 
-<style scoped></style>
+<style scoped>
+@import url(../../css/botones.css);
+
+.FormGeneral {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    margin: 0 auto;
+    gap: 11px;
+}
+
+.password-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+}
+
+.input_ct {
+    width: 320px;
+}
+
+.cardi {
+    color: var(--color-white);
+    width: 60%;
+    margin: 0 auto;
+    border-radius: 30px;
+}
+
+.btn_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+</style>

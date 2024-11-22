@@ -7,8 +7,11 @@ import CreateAnccount2 from '@/views/login/CreateAnccount2.vue'
 import CreateAnccount3 from '@/views/login/CreateAnccount3.vue'
 import CreateAnccount4 from '@/views/login/CreateAnccount4.vue'
 
+
 //componentes de la app
 import HomeView from '@/views/publications/HomeView.vue'
+import FindUsers from '@/views/publications/FindUsers.vue'
+import ProfileSelf from '@/views/profiles/ProfileSelf.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -40,6 +43,16 @@ const routes: Array<RouteRecordRaw> = [
     path: '/auth/create4',
     name:'anccount4',
     component:CreateAnccount4
+  },
+  {
+    path: '/Toudrex/profile',
+    name:'profile',
+    component:ProfileSelf
+  },
+  {
+    path: '/Toudrex/FindUser',
+    name:'findUser',
+    component:FindUsers
   }
   
 ]

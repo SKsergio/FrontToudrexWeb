@@ -15,18 +15,18 @@
 
                     <h1>Toudrex</h1>
 
-                    <form class="form__login" method="POST" action="">
+                    <form class="form__login"  @submit.prevent="Authentification">
 
                         <div class="container_inputs">
                             <div class="input__box">
-                                <input type="text" class="input_file" required id="user_gmail" v-model="user_gmail"
+                                <input type="text" class="input_file" required id="user_gmail" v-model="authe.email"
                                     autocomplete="new-username">
                                 <span>User</span>
                                 <i></i>
                             </div>
 
                             <div class="input__box">
-                                <input type="password" class="input_file" required id="password" v-model="password"
+                                <input type="password" class="input_file" required id="password" v-model="authe.password"
                                     autocomplete="new-password">
                                 <span>Password</span>
                                 <i></i>
@@ -56,16 +56,33 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 //importando css
 import '@/css/login.css'
 
 //importando componentes de vue
 import { ref } from 'vue';
 
-let user_gmail = ref('');
-let password = ref('');
+//importando servicio e interfaz
+import AuthService from '@/services/AuthService';
+import AuthInterface from '@/interfaces/AuthInterface';
 
+let authe = ref<AuthInterface>({
+    email: '',
+    password: '',
+});
+
+//instancia de la clase
+let AuthServ = new AuthService
+
+const Authentification= async()=>{
+    try {
+        const response = await AuthServ.login(authe.value)
+        console.log('Login exitoso:', response);
+    } catch (error) {
+        console.error('Error al autenticar:', error);
+    }
+}
 
 </script>
 
