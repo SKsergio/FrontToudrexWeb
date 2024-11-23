@@ -10,6 +10,5 @@ export default interface UserInterface {
     direccion: string;
     foto_perfil: string;
     foto_portada: string;
-    token: string;
 }
 

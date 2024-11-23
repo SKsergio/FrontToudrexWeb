@@ -60,6 +60,19 @@ let apellido = ref('');
 let message = ref('Sin edad ingresada');
 let fecha = ref(null);
 
+//fecha cumple
+let fechaFormateada = ref('')
+
+watch(fecha, (nuevaFecha) => {
+  if (nuevaFecha) {
+    const date = new Date(nuevaFecha);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    fechaFormateada.value = `${year}-${month}-${day}`;
+  }
+});
+
 //datos de la fecha
 let fechaActual = new Date();
 let anioActual = fechaActual.getFullYear();
@@ -105,6 +118,7 @@ const SaveData = () =>{
 
     sessionStorage.setItem('nombre', nombre.value);
     sessionStorage.setItem('apellido', apellido.value);
+    sessionStorage.setItem('fecha_nacimiento', fechaFormateada.value) 
     sessionStorage.setItem('edad', edad) 
 
     // redireccionando al siguiente formulario
@@ -116,7 +130,7 @@ let error_nombre = ref(null)
 let error_apellido = ref(null)
 let error_fecha = ref(null)
 
-const validarCampos =(nombre, apellido, edad)=>{
+const validarCampos =(nombre, apellido, edad)=>{    
     if (nombre == '' || nombre == null) {
         error_nombre.value.textContent = 'El campo de nombre es requerido.'
         error_nombre.value.style.color = 'red';

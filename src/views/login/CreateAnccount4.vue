@@ -12,7 +12,7 @@
                         <h1 class="How_Name">Selecciona una foto de Perfil</h1>
 
                         <div class="input-group">
-                            <inputFileComponent></inputFileComponent>
+                            <inputFileComponent  @imageSelected="handleImageSelected"></inputFileComponent>
                         </div>
                         <span class="error-foto_perfil" id="error-foto_perfil"></span>
                     </div>
@@ -33,8 +33,22 @@
     </v-container>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { ref, Ref, defineEmits } from 'vue';
 import inputFileComponent from '@/components/inputFileComponent.vue';
+
+//importando servicio e interfaz
+import UserInterface from '@/interfaces/UserInterface';
+
+const imagenSeleccionada = ref(null);
+// Archivo seleccionado
+const archivoSeleccionado = ref<File | null>(null);
+
+const handleImageSelected = (file) => {
+  imagenSeleccionada.value = file; // Guardar la imagen seleccionada
+  console.log('Archivo recibido en el padre:', file);
+}
+
 </script>
 
 <style scoped>

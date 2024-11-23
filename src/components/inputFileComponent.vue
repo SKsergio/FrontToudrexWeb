@@ -15,14 +15,18 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, defineEmits } from 'vue';
 
 const previewImage = ref(null); // Para almacenar la URL de la vista previa
+
+const emit = defineEmits(['imageSelected']);
+
 
 const onImageSelected = (event) => {
     const file = event.target.files[0]; // Obtener el archivo seleccionado
     if (file) {
         previewImage.value = URL.createObjectURL(file); // Crear una URL para la vista previa
+        emit('imageSelected', file); // Emitir el archivo al componente padre
     } else {
         previewImage.value = null; // Si no hay archivo seleccionado, limpiar la vista previa
     }
@@ -31,12 +35,13 @@ const onImageSelected = (event) => {
 
 <style scoped>
 .image-preview img {
-  max-width: 100%;
-  height: auto;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  margin-top: 10px;
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    margin-top: 10px;
 }
+
 .input-div {
     position: relative;
     width: 80px;

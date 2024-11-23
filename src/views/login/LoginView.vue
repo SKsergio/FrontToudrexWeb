@@ -59,29 +59,34 @@
 <script setup lang="ts">
 //importando css
 import '@/css/login.css'
-
 //importando componentes de vue
 import { ref } from 'vue';
-
 //importando servicio e interfaz
-import AuthService from '@/services/AuthService';
 import AuthInterface from '@/interfaces/AuthInterface';
+//importando vuex
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
+
+const store = useStore()
 
 let authe = ref<AuthInterface>({
     email: '',
     password: '',
 });
 
-//instancia de la clase
-let AuthServ = new AuthService
-
 const Authentification= async()=>{
-    try {
-        const response = await AuthServ.login(authe.value)
-        console.log('Login exitoso:', response);
-    } catch (error) {
-        console.error('Error al autenticar:', error);
+    const success = await store.dispatch('login', authe.value);
+
+    if (success) {
+        console.log('Login exitoso');
+        router.push({name: 'profile'})
+    } else {
+        console.log('Error en el login:', store.state.error);
     }
+
+
 }
 
 </script>
