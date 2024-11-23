@@ -2,7 +2,7 @@
     <div class="profile-container">
         <!-- Foto de portada -->
         <div class="cover-photo">
-            <img alt="Cover Photo" />
+            <img :src="urlportada" alt="Cover Photo" />
             <button @click="changeCover" class="cover-btn">Cambiar portada</button>
             <input type="file" @change="handleCoverChange" class="file-input" ref="coverInput" />
         </div>
@@ -10,7 +10,7 @@
         <!-- Foto de perfil -->
         <div class="profile-info">
             <div class="profile-photo">
-                <img alt="Profile Photo" />
+                <img :src='urlperfil' alt="Profile Photo" />
                 <button class="profile-btn">
                     Cambiar perfil
                 </button>
@@ -35,12 +35,16 @@ import { useStore } from 'vuex';
 import UserInterface from '@/interfaces/UserInterface';
 
 const store = useStore();
-
+const baseUrl = "http://127.0.0.1:8000"; 
 
 const Usuario = computed<UserInterface>(() => store.getters.getUser);
-console.log(Usuario.value.nombre_usuario);
+let fotoperfil = Usuario.value.foto_perfil
+let fotoportada = Usuario.value.foto_portada
 
+let urlperfil = `${baseUrl}${fotoperfil}`;
+let urlportada = `${baseUrl}${fotoportada}`;
 
+console.log(urlperfil);
 
 
 

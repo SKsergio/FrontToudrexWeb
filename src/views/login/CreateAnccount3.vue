@@ -88,7 +88,7 @@ const SaveData = () =>{
     }
 
     sessionStorage.setItem('usuario', user.value);
-    sessionStorage.setItem('telefono', correo.value);
+    sessionStorage.setItem('correo', correo.value);
     sessionStorage.setItem('contrasenia', password_validate.value);
 
     // redireccionando al siguiente formulario
