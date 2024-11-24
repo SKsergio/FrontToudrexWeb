@@ -109,7 +109,6 @@ const saveDataUser = async () => {
 
     const success = await store.dispatch('registerUser', userData);
     if (success) {
-        console.log('Cuenta creada exitosamente');
         //obtenidno el id del usuario que ha sido registrado
         const Usuario = computed<UserInterface>(() => store.getters.getUser);
         const idUser = Usuario.value.id

@@ -17,15 +17,43 @@
                 <input type="file" class="file-input" ref="profileInput" />
             </div>
 
-            <h2 class="username">{{ Usuario.nombre_usuario}}</h2>
+            <h2 class="username">{{ Usuario.nombre_usuario }}</h2>
 
             <div class="actions">
                 <button @click="editProfile" class="btn_logins">Editar perfil</button>
                 <button @click="addPost" class="btn_logins">
                     + Agregar publicación
                 </button>
-            <v-btn @click="logout">Cerrar Sesión</v-btn>
+                <v-btn @click="logout">Cerrar Sesión</v-btn>
 
+                <v-dialog v-model="dialog" max-width="500px">
+                    <v-card class="bg-teal-darken-4">
+                        <v-card-title>
+                            <span class="text-h6">Agregar publicación</span>
+                        </v-card-title>
+
+                        <v-card-text>
+                            <!-- Formulario dentro del modal -->
+                            <v-form ref="form">
+                                <v-text-field v-model="postContent" label="Escribe un comentario :)"
+                                    required></v-text-field>
+
+                                <h3>Seleccina una imagen</h3>
+                                <div class="form-group">
+                                    <inputFileComponent @imageSelected="handleImageBlank"></inputFileComponent>
+                                    <span class="error-foto_portada" id="error-foto_portada"></span>
+                                </div>
+
+                            </v-form>
+                        </v-card-text>
+
+                        <v-card-actions>
+                            <!-- Botones del modal -->
+                            <v-btn @click="submitPost">Agregar</v-btn>
+                            <v-btn @click="closeDialog">Cancelar</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
             </div>
         </div>
     </div>
@@ -36,18 +64,59 @@ import { ref, computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import UserInterface from '@/interfaces/UserInterface';
 import { useRouter } from 'vue-router';
+import inputFileComponent from '@/components/inputFileComponent.vue';
+import PostInterface from '@/interfaces/PostInterface';
+import Postservice from '@/services/PostService';
+
 
 const router = useRouter()
 
 const store = useStore();
-const baseUrl = "http://127.0.0.1:8000"; 
+const baseUrl = "http://127.0.0.1:8000";
 
 const Usuario = computed<UserInterface>(() => store.getters.getUser);
 let fotoperfil = Usuario.value.foto_perfil
 let fotoportada = Usuario.value.foto_portada
+let idUser = Usuario.value.id;
 
 let urlperfil = `${baseUrl}${fotoperfil}`;
 let urlportada = `${baseUrl}${fotoportada}`;
+
+// Estado del modal
+const dialog = ref(false);
+
+// Datos del formulario
+const postContent = ref("");
+
+// Función para abrir el modal
+const addPost = () => {
+    dialog.value = true;
+};
+
+// Función para cerrar el modal
+const closeDialog = () => {
+    dialog.value = false;
+};
+
+// Acción al enviar el formulario
+const submitPost = () => {
+    if (postContent.value.trim() === "") {
+        alert("El campo no puede estar vacío.");
+        return;
+    }
+
+    if (fotopublicacion) {
+        savePhotos(idUser, 2, fotopublicacion, postContent.value)
+    }
+    // Aquí puedes realizar alguna acción con los datos, como enviarlos a una API.
+    closeDialog();
+};
+
+let fotopublicacion = <File | null>(null); // Archivo seleccionado
+//foto de portada
+const handleImageBlank = (file: File) => {
+    fotopublicacion = file; // Guardar el archivo seleccionado
+};
 
 
 const logout = () => {
@@ -55,13 +124,31 @@ const logout = () => {
     router.push('/auth'); // Redirigir al login
 };
 
+const savePhotos = async (id_user: number, id_tipo: number, photoFile: File, content: string) => {
+
+    const fotoData = {
+        fk_usuario_id: id_user,
+        fk_tipoFoto_id: id_tipo,
+        photo: photoFile,
+        contenido: content
+    };
+    console.log('datos antes de ser enviados:' + fotoData);
+
+    const Postserv = new Postservice()
+
+
+    try {
+        const response = await Postserv.registrarPosts(fotoData);
+        const data = await response.json();
+        console.log("Foto registrada con éxito:", data);
+    } catch (error) {
+        console.error("Error al enviar la foto:", error);
+    };
+}
+
 
 //funciones para rditar perfil y agregar post
 const editProfile = () => {
-
-}
-
-const addPost = () => {
 
 }
 const handleCoverChange = () => {
