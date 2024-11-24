@@ -24,6 +24,8 @@
                 <button @click="addPost" class="btn_logins">
                     + Agregar publicación
                 </button>
+            <v-btn @click="logout">Cerrar Sesión</v-btn>
+
             </div>
         </div>
     </div>
@@ -33,6 +35,9 @@
 import { ref, computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import UserInterface from '@/interfaces/UserInterface';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 const store = useStore();
 const baseUrl = "http://127.0.0.1:8000"; 
@@ -44,8 +49,11 @@ let fotoportada = Usuario.value.foto_portada
 let urlperfil = `${baseUrl}${fotoperfil}`;
 let urlportada = `${baseUrl}${fotoportada}`;
 
-console.log(urlperfil);
 
+const logout = () => {
+    store.dispatch('logout');
+    router.push('/auth'); // Redirigir al login
+};
 
 
 //funciones para rditar perfil y agregar post

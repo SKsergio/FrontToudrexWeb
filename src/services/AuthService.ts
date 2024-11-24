@@ -25,7 +25,7 @@ class AuthService {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }, body: JSON.stringify({
-                    email: Auth.email,
+                    nombre_usuario: Auth.nombre_usuario,
                     password: Auth.password
                 })
             })

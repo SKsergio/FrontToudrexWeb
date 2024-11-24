@@ -12,6 +12,7 @@ import CreateAnccount4 from '@/views/login/CreateAnccount4.vue'
 import HomeView from '@/views/publications/HomeView.vue'
 import FindUsers from '@/views/publications/FindUsers.vue'
 import ProfileSelf from '@/views/profiles/ProfileSelf.vue'
+import AnotherProfile from '@/views/profiles/AnotherProfile.vue'
 
 //store
 import { useStore } from 'vuex'; // Para acceder al store
@@ -64,6 +65,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/Toudrex/FindUser',
     name:'findUser',
     component:FindUsers,
+    meta: { requiresAuth: true, showMenu: true }
+  },
+  {
+    path: '/Toudrex/ProfileUser/:id',
+    name:'AnotherProfile',
+    component:AnotherProfile,
     meta: { requiresAuth: true, showMenu: true }
   }
   

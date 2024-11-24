@@ -52,7 +52,7 @@ export default createStore({
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        email: Auth.email,
+                        nombre_usuario: Auth.nombre_usuario,
                         password: Auth.password
                     })
                 });

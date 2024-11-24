@@ -1,4 +1,4 @@
 export default interface AuthInterface {
-    email: string;
+    nombre_usuario: string;
     password: string;
 }

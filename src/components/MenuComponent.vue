@@ -16,7 +16,7 @@
                     <span class="icon">
                         <ion-icon name="bonfire-outline"></ion-icon>
                     </span>
-                    <span class="text">Design</span>
+                    <span class="text">Buscar Usuarios</span>
                 </router-link>
             </li>
 

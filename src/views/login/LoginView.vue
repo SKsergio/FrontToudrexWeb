@@ -19,7 +19,7 @@
 
                         <div class="container_inputs">
                             <div class="input__box">
-                                <input type="text" class="input_file" required id="user_gmail" v-model="authe.email"
+                                <input type="text" class="input_file" required id="user_gmail" v-model="authe.nombre_usuario"
                                     autocomplete="new-username">
                                 <span>User</span>
                                 <i></i>
@@ -72,7 +72,7 @@ const router = useRouter()
 const store = useStore()
 
 let authe = ref<AuthInterface>({
-    email: '',
+    nombre_usuario: '',
     password: '',
 });
 
@@ -83,9 +83,8 @@ const Authentification= async()=>{
         console.log('Login exitoso');
         router.push({name: 'profile'})
     } else {
-        console.log('Error en el login:', store.state.error);
+        alert('error en las credenciales master')
     }
-
 
 }
 
