@@ -16,6 +16,20 @@
 
             <h2 class="username">{{Profile?.nombre_usuario}}</h2>
         </div>
+
+        <!-- contenedor de las publicaciones -->
+        <div class="publication__profile" id="pub_container">
+            <section class="posts" v-for="post in Posts" :key="post.id">
+                <!--recuperar el id de publicacion-->
+                <div class="posters_img">
+                    <img class="img_post_ct" :src='`http://127.0.0.1:8000`+post.url_publicacion' alt="foto">
+                    <p>
+                    <h4>{{ post.contenido }}</h4>
+                    </p>
+                </div>
+            </section>
+
+        </div>
     </div>
 </template>
 
@@ -24,6 +38,16 @@ import { ref, onMounted, Ref } from 'vue';
 import UserInterface from '@/interfaces/UserInterface';
 import UserService from '@/services/UserService';
 import { useRoute } from 'vue-router';
+import GetPostInterface from '@/interfaces/GetPostInterface';
+import Postservice from '@/services/PostService';
+
+
+let Posts = ref<GetPostInterface[]>([]);
+const Postserv = new Postservice();
+
+const findPosts = async (id: number) => {
+    await Postserv.postfetch(id);
+};
 
 const route = useRoute();
 
@@ -34,7 +58,7 @@ const baseUrl = "http://127.0.0.1:8000";
 
 let urlperfil = '';
 let urlportada = '';
-const id = ref<number | null>(null);
+let id = ref<number | null>(null);
 
 onMounted(async () => {
     id.value = Number(route.params.id);
@@ -44,7 +68,10 @@ onMounted(async () => {
 
         // Asigna el perfil obtenido al `Profile`
         Profile.value = service.getUser().value;
-        console.log(Profile.value);
+        
+        await Postserv.postfetch(id.value);
+
+        Posts.value = Postserv.getPosts();
         
 
         // Asegúrate de que los datos existan antes de usarlos
@@ -68,7 +95,7 @@ onMounted(async () => {
     background-color: var(--color-profile);
     color: black;
     font-family: var(--font--title);
-    border-radius: 20pxx;
+    border-radius: 20px;
 }
 
 .cover-photo {
@@ -171,5 +198,29 @@ onMounted(async () => {
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 8px;
+}
+.publication__profile{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 14px;
+    max-width: 90%;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    background: #192d4788;
+    border-radius: 20px;
+}
+.posters_img {
+    width: 300px;
+    height: 450px;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+.img_post_ct{
+    width: 80%;
+    height: 80%;
+    margin: 0 auto;
+    border-radius: 20px;
 }
 </style>

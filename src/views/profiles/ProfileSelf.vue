@@ -56,6 +56,21 @@
                 </v-dialog>
             </div>
         </div>
+
+        <!-- contenedor de las publicaciones -->
+        <div class="publication__profile" id="pub_container">
+            <section class="posts" v-for="post in Posts" :key="post.id">
+                <!--recuperar el id de publicacion-->
+                <div class="posters_img">
+                    <img class="img_post_ct" :src='`http://127.0.0.1:8000`+post.url_publicacion' alt="foto">
+                    <p>
+                    <h1>{{ post.contenido }}</h1>
+                    </p>
+                    <input type="submit" value="Eliminar">
+                </div>
+            </section>
+
+        </div>
     </div>
 </template>
 
@@ -65,9 +80,26 @@ import { useStore } from 'vuex';
 import UserInterface from '@/interfaces/UserInterface';
 import { useRouter } from 'vue-router';
 import inputFileComponent from '@/components/inputFileComponent.vue';
-import PostInterface from '@/interfaces/PostInterface';
 import Postservice from '@/services/PostService';
+import GetPostInterface from '@/interfaces/GetPostInterface';
 
+let Posts = ref<GetPostInterface[]>([]);
+const Postserv = new Postservice();
+
+onMounted(async () => {
+    try {
+        await Postserv.postfetch(idUser);
+
+        Posts.value = Postserv.getPosts();
+
+    } catch (error) {
+        console.error("Error al obtener publicaciones:", error);
+    }
+});
+
+const findPosts = async (id: number) => {
+    await Postserv.postfetch(id);
+};
 
 const router = useRouter()
 
@@ -134,7 +166,6 @@ const savePhotos = async (id_user: number, id_tipo: number, photoFile: File, con
     };
     console.log('datos antes de ser enviados:' + fotoData);
 
-    const Postserv = new Postservice()
 
 
     try {
@@ -168,7 +199,7 @@ const changeCover = () => {
     background-color: var(--color-profile);
     color: black;
     font-family: var(--font--title);
-    border-radius: 20pxx;
+    border-radius: 20px;
 }
 
 .cover-photo {
@@ -291,5 +322,28 @@ const changeCover = () => {
     border: none;
     cursor: pointer;
     font-size: 12px;
+}
+.publication__profile{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 100%;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+    background: #192d4788;
+}
+.posters_img {
+    width: 300px;
+    height: 450px;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+.img_post_ct{
+    width: 80%;
+    height: 80%;
+    margin: 0 auto;
+    border-radius: 20px;
 }
 </style>
