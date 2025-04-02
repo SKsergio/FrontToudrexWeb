@@ -37,9 +37,9 @@
                         <div class="input-group">
                             <section class="password-group">
                                 <v-text-field hint="Enter your password to access this website" label="Password"
-                                    type="password" class="input_ct" v-model="password">
+                                    type="password" ref="passwordInput1" class="input_ct" v-model="password">
                                 </v-text-field>
-                                <span class="toggle-password">👁️</span>
+                                <span class="toggle-password1" @click="watchPasswords">👁️</span>
                             </section>
 
                             <h3 class="error_message" ref="error_password"></h3>
@@ -51,9 +51,9 @@
                         <p>La contraseña debe ser igual a la descrita en el ítem anterior</p>
                         <section class="password-group">
                             <v-text-field hint="Enter your password to access this website" label="Password"
-                                type="password" class="input_ct" v-model="password_validate">
+                                type="password" ref="passwordInput2" class="input_ct" v-model="password_validate">
                             </v-text-field>
-                            <span class="toggle-password">👁️</span>
+                            <span class="toggle-password2" @click="watchPasswords">👁️</span>
                         </section>
 
                         <h3 class="error_message" ref="error_passwordValidate"></h3>
@@ -80,7 +80,18 @@ let user = ref('');
 let correo = ref('');
 let password = ref('');
 let password_validate = ref('');
+let passwordInput1 = ref('')
 
+// funcion para mostrar las contasenias
+const watchPasswords = (event) => {
+    //obtenemos la clase del elemento
+    let className = event.target.attributes.class.value
+
+    if (className == 'toggle-password1') {
+        const element = passwordInput1.value?.$el || passwordInput1.value;
+        console.log(element)
+    }    
+};
 //funcion para guardar los datos en el sesionStorage
 const SaveData = () =>{
     if (!validarCampos(user.value, correo.value, password.value, password_validate.value)) {
@@ -135,8 +146,6 @@ const validarCampos =(user, mail, password, passwordVal)=>{
     }
     return true
 }
-
-
 
 </script>
 

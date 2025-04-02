@@ -1,0 +1,382 @@
+@import url(./variables.css);
+
+/* contenedor principal del home */
+.content_home{
+    width: 90%;
+    margin: 0 auto;
+    display: grid;
+    /* grid-template-rows: minmax(150px,350px) 1fr; esto se va descomentar en futuras actualizaciones cuando agregemos las historias */
+    grid-template-rows: 1fr;
+    gap: 25px;
+}
+/* contenedor de las publicaciones */
+.publications__container{
+    display: grid;
+    grid-template-columns: 340px 4fr;
+    gap: 20px;
+    position: relative;
+}
+.content_central_home{
+    background-image: var(--color-backgound);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+/* todo el disenio de el contenido de las publicaciones */
+.publications{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    position: relative;
+    /* margin-bottom: 20px; */
+    border: 3px var(--color-cero) solid;
+    border-radius: 12px;
+    color: var(--color-white);
+}
+/* cabecera de la publicacion */
+.header_publications{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-left: 10px;
+    width: 90%;
+    margin: 0 auto;
+    gap: 30px;
+}
+/* imagen */
+.profile_image_home{
+    width: 40px;
+    height: 40px;
+}
+.img_prf{
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+}
+.image_publications{
+    width: 350px;
+    height: 425px;
+    /* background-image: url(./img//profile_example.jpg);
+    background-size: cover; */
+    background-position: center;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.5) 16px 14px 20px;
+}
+.header_publications a{
+    text-decoration: none;
+    color: var(--color-white);
+    font-family: var(--font-decoration);
+    font-size: 1.4rem;
+}
+.img_pbl{
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}
+.find_user{
+    font-family: var(--font-decoration);
+    font-size: 3.1rem;
+}
+.input-container {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.input-container input[type="text"] {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px 0 0 25px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-container input[type="text"]:focus {
+    box-shadow: 0 0 8px rgba(102, 179, 255, 0.6);
+}
+
+.input-container input[type="text"]::placeholder {
+    color: #999;
+}
+
+.input-container .icon {
+    margin-left: -35px;
+    font-size: 20px;
+    color: #999;
+    pointer-events: none;
+}
+
+.input-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 0 25px 25px 0;
+    background-color: #66b3ff;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+.input-container button:hover {
+    background-color: #5599e6;
+}
+/* disenio de las historias */
+/* contedor principal */
+.histories__container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-self: center;
+}
+.histories_home{
+    width: 100%;
+    height: 100%;
+}
+.content__box{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.galery{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* formulario */
+.form_search_pipol{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/*Searchbar*/
+.searchbar{
+    position: relative;
+    width: 65px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .5s;
+}
+.searchbar:hover{
+    width: 310px;
+}
+.searchbar::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 100%;
+    background: linear-gradient(#fff,#fff,#e3e3e3);
+    z-index: 1;
+    filter: blur(1px);
+}
+.searchbar::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -1px;
+    width: 10px;
+    height: 100%;
+    background: #9d9d9d;
+    z-index: 1;
+    filter: blur(1);
+}
+.shadow{
+    position: absolute;
+    top: 0;
+    left: -50px;
+    width: calc(100% + 50px);
+    height: 300px;
+    background: linear-gradient(180deg, rgb(0,0,0,0.1), transparent, transparent) ;
+    transform-origin: top;
+    transform: skew(45deg);
+    pointer-events: none;
+}
+.shadow::before{
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: var(--color-third);
+    border-bottom-right-radius: 82px;
+    z-index: 1;
+}
+.input__search{
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: 10px;
+    font-size: 1.1em;
+    outline: none;
+    color: #555;
+    background: linear-gradient(#dbdae1,#a3aabe);
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.1),
+                15px 15px 15px rgba(0,0,0,0.1),
+                20px 20px 15px rgba(0,0,0,0.1),
+                30px 30px 15px rgba(0,0,0,0.1),
+                inset 1px 1px 2px #fff;
+}
+.input__search::placeholder,
+.input__search{ 
+    color: transparent;
+}
+.searchbar:hover .input__search::placeholder,
+.searchbar:hover .input__search{
+    color: #555;
+}
+.icon__find{
+    position: absolute;
+    right: 20px;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+/* reacciones y todo lo relacionado */
+.root{
+    display: flex;
+    flex-direction: row;
+    width: 86%;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.comments{
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    /* background-color: var(--color-green); */
+    gap: 9px;
+}
+#form_commentaries{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+#btn_coment{
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 3px;
+    bottom: -5px;
+}
+.btn_coment_icon{
+    color: var(--color-white);
+    width: 35px;
+    height: 35px;
+    transition: all .6s ease;
+    cursor: pointer;
+
+}
+/* mensaje */
+.message__publication{
+    width: 78%;
+    margin: 0 auto;
+    font-family: var(--font--title);
+}
+/* reacciones */
+.reactions{
+    bottom: 0;
+    color: var(--color-fifth);
+    right: 126px;
+}
+.comments_view{
+    color: var(--color-fifth);
+}
+/* pruebas */
+.information__section__home{
+    background-color: transparent;
+    border: 2px solid var(--color-primary-variante1);
+    border-radius: 8px;
+    overflow: hidden;
+    height: 510px;
+    position: sticky;
+    top: 0;
+    bottom: 0;
+    overflow-y: scroll;
+}
+.reactions1, .reactions2, .comments_view{
+    width: 35px;
+    height: 35px;
+    transition: all .6s ease;
+    cursor: pointer;
+}
+.reactions1:hover, .reactions2:hover, .comments_view:hover{
+    transform: scale(1.2);
+}
+/* comentaries */
+.input_box{
+    margin-top: 30px;  /*ojo aca*/
+    position: relative;
+    max-height: 55px;
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px 10px 0 0;
+}
+.input_box .preview_comentary{
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    outline: none;
+    border: none;
+    color: black;
+    font-size: 17px;
+    transition: 0.5s;
+    z-index: 10;
+}
+.input_box span{
+    position: absolute;
+    left: 0;
+    padding: 20px 10px 10px;
+    pointer-events: none;
+    color: var( --color-primary-variante1);
+    font-size: 18px;
+    transition: .5s;
+    font-family: var(--font--body);
+}
+/*  */
+.input_box .preview_comentary:valid~span,
+.input_box .preview_comentary:focus~span{
+    color: rgb(255, 255, 255);
+    font-size: 0.79em;
+    transform: translateY(-34px);
+}
+.input_box i{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-white);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: .6s;
+    pointer-events: none;
+}
+
+.input_box .preview_comentary:valid~i,
+.input_box .preview_comentary:focus~i{
+    height: 40px;
+}

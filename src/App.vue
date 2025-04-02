@@ -1,10 +1,10 @@
 <template>
-   <header v-if="route.meta.showMenu">
+    <header v-if="route.meta.showMenu">
         <MenuComponent></MenuComponent>
     </header>
 
     <main>
-        <router-view />
+        <router-view/>
     </main>
 
     <footer>

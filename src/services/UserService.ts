@@ -52,15 +52,23 @@ class UserService {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                }
+                },
             });
-
-            if (!response.ok) {
-                throw new Error(`No se han encontrado datos: ${response.statusText}`);
-            }
-            const jsonresponse = await response.json()
-            this.Users.value = await jsonresponse.data;
     
+            if (!response.ok) {
+                console.error(`No se han encontrado datos: ${response.statusText}`);
+                alert('No coinciden usuarios');
+                return; // Detén la ejecución aquí
+            }
+    
+            const jsonresponse = await response.json();
+    
+            if (Array.isArray(jsonresponse.data)) {
+                this.Users.value = jsonresponse.data;
+            } else {
+                console.warn('La respuesta no contiene datos válidos:', jsonresponse);
+                this.Users.value = []; // Asegura un valor consistente
+            }
         } catch (error) {
             console.error('Error al registrar usuario:', error);
             throw error; // Propaga el error para manejarlo fuera de este método

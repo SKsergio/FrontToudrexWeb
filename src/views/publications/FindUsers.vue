@@ -20,8 +20,8 @@
             </div>
         </transition-group>
 
-        <div v-if="filteredProfiles.length === 0" class="no-results">
-            <p>No se encontraron perfiles.</p>
+        <div v-if="filteredProfiles.length == 0" class="no-results">
+            <p >No se encontraron perfiles.</p>
         </div>
     </div>
 </template>
@@ -40,6 +40,7 @@ let param = ref<string>('');
 
 // Llamar a la función buscar y actualizar filteredProfiles directamente
 const buscar = async () => {
+
     await findUsers(param.value); // Asegurarse de esperar a que findUsers termine
 
     // Una vez que los datos hayan sido actualizados, actualiza filteredProfiles
@@ -80,7 +81,7 @@ const irperfil = (id: number)=>{
 }
 
 .profile-card {
-    background: #fff;
+    background: #1e86a0;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin: 10px 0;
